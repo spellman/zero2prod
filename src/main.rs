@@ -2,5 +2,5 @@ use zero2prod;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
-    zero2prod::run().await
+    zero2prod::run()?.await
 }
