@@ -11,12 +11,12 @@ async fn health_check() -> impl actix_web::Responder {
     actix_web::HttpResponse::Ok().finish()
 }
 
-pub fn run() -> Result<dev::Server, std::io::Error> {
+pub fn run(listener: std::net::TcpListener) -> Result<dev::Server, std::io::Error> {
     let server = actix_web::HttpServer::new(|| {
         actix_web::App::new()
             .route("/health_check", web::get().to(health_check))
     })
-        .bind("127.0.0.1:8000")?
+        .listen(listener)?
         .run();
 
     Ok(server)
