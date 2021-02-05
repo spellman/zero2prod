@@ -7,7 +7,7 @@ use actix_web::web;
 //     format!("Hello {}!", &name)
 // }
 
-async fn health_check() -> impl actix_web::Responder {
+async fn health_check() -> actix_web::HttpResponse {
     actix_web::HttpResponse::Ok().finish()
 }
 
