@@ -1,6 +1,6 @@
 use reqwest;
-use zero2prod;
 use std::net;
+use zero2prod::startup;
 
 // NOTE: This is the only part of this test code that has to do with our app. It could also launch,
 //       for example, a Rails app by shelling out.
@@ -12,8 +12,7 @@ fn spawn_app() -> String {
     let listener = net::TcpListener::bind(&format!("{}:0", local_host))
         .expect("Failed to bind to random port.");
     let port = listener.local_addr().unwrap().port();
-    let server = zero2prod::run(listener)
-        .expect("Failed to bind to address.");
+    let server = startup::run(listener).expect("Failed to bind to address.");
 
     // Launch the server as a background task with tokio::spawn, which returns a handle to the
     // spawned future.
@@ -86,4 +85,3 @@ async fn subscribe_returns_a_400_when_data_is_missing() {
         );
     }
 }
-
