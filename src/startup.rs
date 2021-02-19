@@ -1,5 +1,4 @@
 use crate::routes;
-use actix_web;
 use actix_web::dev;
 use actix_web::web;
 

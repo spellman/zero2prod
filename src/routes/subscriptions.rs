@@ -1,6 +1,4 @@
-use actix_web;
 use actix_web::web;
-use serde;
 
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct FormData {
